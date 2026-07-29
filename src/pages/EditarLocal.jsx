@@ -1,36 +1,32 @@
-import { useContext, useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useLocation } from 'wouter';
 import { UsuariosContext } from '../context/UsuariosContext';
 
-function EditarLocal() {
-    const { id } = useParams();
-    const navigate = useNavigate();
+function EditarLocal({ id }) {
+    const [, navigate] = useLocation();
     const { locais, editarLocal } = useContext(UsuariosContext);
-    const [formData, setFormData] = useState({
+    const [rascunho, setRascunho] = useState(null);
+    const local = locais.find((item) => String(item.id) === id);
+    const formData = rascunho ?? {
+        nome: local?.nome ?? '',
+        descricao: local?.descricao ?? '',
+        coordenadas: local?.coordenadas ?? '',
+        tipoDePratica: local?.tipoDePratica ?? '',
+    };
+    const formularioVazio = {
         nome: '',
         descricao: '',
         coordenadas: '',
-        tipoDePratica: ''
-    });
-
-    useEffect(() => {
-        const local = locais.find(local => local.id === id);
-        if (local) {
-            setFormData({
-                nome: local.nome,
-                descricao: local.descricao,
-                coordenadas: local.coordenadas,
-                tipoDePratica: local.tipoDePratica
-            });
-        }
-    }, [id, locais]);
+        tipoDePratica: '',
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
+        setRascunho({
+            ...(local ? formData : formularioVazio),
             [name]: value
-        }));
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -79,11 +75,15 @@ function EditarLocal() {
                 />
                 
                 <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', fontSize: '16px', cursor: 'pointer' }}>Salvar Alterações</button>
-                <button onClick={() => navigate('/')} style={{ marginTop: '20px', padding: '10px 10px', backgroundColor: '#f44336', color: 'white', fontSize: '16px', cursor: 'pointer' }}>Cancelar</button>
+                <button type="button" onClick={() => navigate('/')} style={{ marginTop: '20px', padding: '10px 10px', backgroundColor: '#f44336', color: 'white', fontSize: '16px', cursor: 'pointer' }}>Cancelar</button>
                 </form>
         </div>
        
     );
 }
+
+EditarLocal.propTypes = {
+    id: PropTypes.string.isRequired,
+};
 
 export default EditarLocal;

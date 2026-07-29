@@ -1,5 +1,16 @@
 # GoFitness360
 
+[![CI](https://github.com/Luizhprovin/GoFitness360/actions/workflows/ci.yml/badge.svg)](https://github.com/Luizhprovin/GoFitness360/actions/workflows/ci.yml)
+
+<p>
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-ES2024-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000">
+  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=000000">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF">
+  <img alt="Wouter" src="https://img.shields.io/badge/Wouter-3-5B3DF5?style=for-the-badge">
+  <img alt="JSON Server" src="https://img.shields.io/badge/JSON_Server-1-000000?style=for-the-badge&logo=json&logoColor=FFFFFF">
+  <img alt="ESLint" src="https://img.shields.io/badge/ESLint-10-4B32C3?style=for-the-badge&logo=eslint&logoColor=FFFFFF">
+</p>
+
 Aplicação React para cadastrar usuários, locais de atividade física e exercícios. O projeto demonstra navegação entre páginas, formulários, consumo da API ViaCEP e operações CRUD apoiadas por uma API simulada com JSON Server.
 
 > **Escopo atual:** projeto acadêmico executado localmente. Autenticação e persistência são simuladas e não devem ser usadas em produção.
@@ -11,14 +22,16 @@ Aplicação React para cadastrar usuários, locais de atividade física e exerc�
 - Cadastro e consulta de exercícios.
 - Consulta de endereço por CEP usando a API ViaCEP.
 - Validação de formulários com React Hook Form.
-- Navegação com React Router.
+- Navegação client-side com Wouter.
 - Regra que impede remover usuários vinculados a locais.
+- Massa de demonstração sintética, sem dados pessoais reais.
+- Verificação automatizada de lint, build e vulnerabilidades no GitHub Actions.
 
 ## Tecnologias
 
-- React 18
-- Vite
-- React Router
+- React 19
+- Vite 8
+- Wouter
 - React Hook Form
 - Fetch API
 - JSON Server
@@ -29,7 +42,7 @@ Aplicação React para cadastrar usuários, locais de atividade física e exerc�
 
 ### Pré-requisitos
 
-- Node.js 18 ou superior
+- Node.js 22.13 ou superior
 - npm
 
 ### Instalação
@@ -40,6 +53,12 @@ cd GoFitness360
 npm install
 ```
 
+Opcionalmente, copie `.env.example` para `.env` para apontar o frontend para outra URL de API:
+
+```bash
+cp .env.example .env
+```
+
 Abra dois terminais na pasta do projeto.
 
 Terminal 1 — API local:
@@ -48,7 +67,7 @@ Terminal 1 — API local:
 npm run json-server
 ```
 
-A API será disponibilizada em `http://localhost:3000`.
+A API será disponibilizada em `http://127.0.0.1:3000`.
 
 Terminal 2 — aplicação:
 
@@ -57,6 +76,8 @@ npm run dev
 ```
 
 Abra no navegador o endereço exibido pelo Vite, normalmente `http://localhost:5173`.
+
+Use `demo@gofitness.local` e `demo123` para acessar a massa de demonstração.
 
 ## Scripts disponíveis
 
@@ -67,11 +88,13 @@ Abra no navegador o endereço exibido pelo Vite, normalmente `http://localhost:5
 | `npm run build` | Gera a versão de produção |
 | `npm run preview` | Visualiza o build localmente |
 | `npm run lint` | Executa as verificações do ESLint |
+| `npm run check` | Executa lint, build e auditoria de segurança |
 
 ## Estrutura
 
 ```text
 GoFitness360/
+├── .github/                 # CI e atualizações automáticas
 ├── public/
 ├── src/
 │   ├── assets/
@@ -80,6 +103,7 @@ GoFitness360/
 │   ├── App.jsx
 │   └── main.jsx
 ├── db.json                  # dados da API simulada
+├── .env.example             # configuração opcional da API
 ├── package.json
 └── vite.config.js
 ```
@@ -90,6 +114,8 @@ GoFitness360/
 - O contexto centraliza usuários, locais e exercícios para as páginas da aplicação.
 - O ViaCEP preenche parte do endereço a partir de um CEP válido.
 - A remoção de usuário verifica previamente se existem locais vinculados.
+- A URL da API é configurável por `VITE_API_URL`, com fallback local.
+- O Dependabot acompanha atualizações e o CI bloqueia regressões de qualidade.
 
 ## Limitações de segurança
 
@@ -99,7 +125,6 @@ A autenticação atual consulta registros no JSON Server e mantém senhas em tex
 
 - Substituir o JSON Server por uma API com banco de dados.
 - Implementar autenticação e autorização reais.
-- Remover URLs locais do código e configurá-las por variável de ambiente.
 - Adicionar testes de componentes e fluxos CRUD.
 - Melhorar acessibilidade e feedback de erros.
 - Publicar uma demonstração navegável.

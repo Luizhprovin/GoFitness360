@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { UsuariosContext } from '../context/UsuariosContext';
 import './CadastroLocalExercicio.css'; 
 
@@ -12,7 +12,7 @@ function CadastroLocalExercicio() {
     endereco: "",
     tiposDePraticasEsportivas: []
   });
-  const navigate = useNavigate();
+  const [, navigate] = useLocation();
 
   const buscarCep = async (cep) => {
     try {

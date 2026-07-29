@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { UsuariosContext } from '../context/UsuariosContext';
 import './Login.css';  
 
 function Login() {
   const { login } = useContext(UsuariosContext);
-  const navigate = useNavigate();
+  const [, navigate] = useLocation();
   const [usuario, setUsuario] = useState({
     email: "",
     senha: ""
@@ -16,7 +16,7 @@ function Login() {
       const resultadoLogin = await login(usuario.email, usuario.senha);
       if (resultadoLogin) {
         localStorage.setItem("isAutenticado", true);
-        window.location.href = "/";
+        navigate("/");
       } else {
         alert("Usuário ou senha incorretos!");
       }
@@ -59,6 +59,5 @@ function Login() {
 }
 
 export default Login;
-
 
 

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { UsuariosContext } from '../context/UsuariosContext';
 
 function Dashboard() {
   const { locais, fetchLocais, removerLocal } = useContext(UsuariosContext);
-  const navigate = useNavigate();
+  const [, navigate] = useLocation();
 
   useEffect(() => {
     const verificarAutenticacao = async () => {
