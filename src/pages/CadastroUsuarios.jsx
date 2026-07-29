@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UsuariosContext } from '../context/UsuariosContext';
 import './CadastroUsuarios.css'; 
@@ -18,8 +18,7 @@ function CadastroUsuarios() {
     });
     const [feedback, setFeedback] = useState("");
 
-    const buscarCep = async () => {
-        const cep = novoUsuario.cep;
+    const buscarCep = async (cep) => {
         if (cep.length === 8) {
             try {
                 const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -37,9 +36,14 @@ function CadastroUsuarios() {
         }
     };
 
-    useEffect(() => {
-        buscarCep();
-    }, [novoUsuario.cep]);
+    const handleCepChange = (event) => {
+        const cep = event.target.value;
+        setNovoUsuario(prevState => ({ ...prevState, cep }));
+
+        if (cep.length === 8) {
+            buscarCep(cep);
+        }
+    };
 
     const handleCadastro = async (e) => {
         e.preventDefault(); 
@@ -86,7 +90,7 @@ function CadastroUsuarios() {
                     className="cadastro-input"
                     value={novoUsuario.cep}
                     placeholder="Digite o CEP"
-                    onChange={(e) => setNovoUsuario({ ...novoUsuario, cep: e.target.value })}
+                    onChange={handleCepChange}
                 />
                 <input
                     type="text"
