@@ -12,8 +12,6 @@ function Login() {
   });
 
   const realizarLogin = async () => {
-    debugger
-    console.log(`Attempting to login with email: ${usuario.email}, senha: ${usuario.senha}`);
     try {
       const resultadoLogin = await login(usuario.email, usuario.senha);
       if (resultadoLogin) {
@@ -61,7 +59,6 @@ function Login() {
 }
 
 export default Login;
-
 
 
 

@@ -1,9 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { UsuariosContextProvider } from './context/UsuariosContext.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
 
 import CadastroUsuarios from "./pages/CadastroUsuarios.jsx";
 import Login from './pages/Login.jsx';
@@ -13,12 +13,6 @@ import BuscarCep from "./pages/BuscarCep.jsx";
 import CadastroLocalExercicio from './pages/CadastroLocalExercicio.jsx';
 import CadastroExercicio from './pages/CadastroExercicio.jsx';
 import EditarLocal from './pages/EditarLocal.jsx';
-
-let isAutenticado = JSON.parse(localStorage.getItem("isAutenticado")) || false;
-
-const PrivateRoute = ({ children }) => {
-  return isAutenticado ? children : <Navigate to="/login" />;
-};
 
 const rotas = createBrowserRouter([
   {
@@ -53,7 +47,7 @@ const rotas = createBrowserRouter([
         path: "/cadastro-local",
         element: (
           <PrivateRoute>
-            <CadastroLocalExercicio /> // Corrigido aqui
+            <CadastroLocalExercicio />
           </PrivateRoute>
         )
       },
