@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UsuariosContext } from '../context/UsuariosContext';
 import './CadastroLocalExercicio.css'; 
 
 function CadastroLocalExercicio() {
-  const { cadastrarLocal, editarLocal, locais } = useContext(UsuariosContext);
+  const { cadastrarLocal } = useContext(UsuariosContext);
   const [local, setLocal] = useState({
     nome: "",
     descricao: "",
@@ -13,17 +13,10 @@ function CadastroLocalExercicio() {
     tiposDePraticasEsportivas: []
   });
   const navigate = useNavigate();
-  const [isEdit, setIsEdit] = useState(false);
 
-  useEffect(() => {
-    if (local.cep.length === 8) {
-      buscarCep();
-    }
-  }, [local.cep]);
-
-  const buscarCep = async () => {
+  const buscarCep = async (cep) => {
     try {
-      const response = await fetch(`https://viacep.com.br/ws/${local.cep}/json/`);
+      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
       const data = await response.json();
       setLocal(prevState => ({
         ...prevState,
@@ -40,20 +33,20 @@ function CadastroLocalExercicio() {
       ...prevState,
       [name]: value
     }));
+
+    if (name === 'cep' && value.length === 8) {
+      buscarCep(value);
+    }
   };
 
   const handleSave = async () => {
-    if (isEdit) {
-      await editarLocal(local);
-    } else {
-      await cadastrarLocal(local);
-    }
+    await cadastrarLocal(local);
     navigate('/');
   };
 
   return (
     <div className="container">
-      <h1>{isEdit ? 'Editar Local de Exercício' : 'Cadastro de Local de Exercício'}</h1>
+      <h1>Cadastro de Local de Exercício</h1>
       <input
         type="text"
         name="nome"
@@ -81,7 +74,7 @@ function CadastroLocalExercicio() {
         placeholder="Endereço"
         readOnly
       />
-      <button onClick={handleSave}>{isEdit ? 'Salvar Alterações' : 'Cadastrar Local'}</button>
+      <button onClick={handleSave}>Cadastrar Local</button>
     </div>
   );
 }
