@@ -42,10 +42,9 @@ export const UsuariosContextProvider = ({ children }) => {
     };
 
     const login = async (email, senha) => {
-      console.log(`Logging in with email: ${email}, senha: ${senha}`); 
-      debugger
       try {
-        const response = await fetch(`http://localhost:3000/usuarios?email=${email}&senha=${senha}`);
+        const query = new URLSearchParams({ email, senha });
+        const response = await fetch(`http://localhost:3000/usuarios?${query.toString()}`);
         const usuarios = await response.json();
         return usuarios.length > 0;
       } catch (error) {
