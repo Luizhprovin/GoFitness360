@@ -1,40 +1,109 @@
 # GoFitness360
 
-## Introdução
-GoFitness360 é uma plataforma inovadora que facilita a busca e o gerenciamento de locais para a prática de atividades físicas, permitindo aos usuários acessar informações detalhadas sobre diversos pontos de exercícios e registrar suas próprias contribuições.
+Aplicação React para cadastrar usuários, locais de atividade física e exercícios. O projeto demonstra navegação entre páginas, formulários, consumo da API ViaCEP e operações CRUD apoiadas por uma API simulada com JSON Server.
 
-### Problema que Resolve
-A dificuldade de encontrar locais adequados para a prática de exercícios físicos é um desafio comum para muitas pessoas. GoFitness360 resolve este problema ao fornecer uma plataforma centralizada onde os usuários podem descobrir locais de exercícios próximos, aprender sobre os tipos de atividades disponíveis e contribuir com informações para a comunidade.
+> **Escopo atual:** projeto acadêmico executado localmente. Autenticação e persistência são simuladas e não devem ser usadas em produção.
 
-## Tecnologias Utilizadas
-GoFitness360 foi desenvolvido utilizando uma variedade de tecnologias e bibliotecas modernas, garantindo uma experiência de usuário fluida e responsiva:
+## Funcionalidades
 
-- **React**: Usado para construir a interface do usuário com componentes reativos e eficientes.
-- **React Router**: Gerenciamento de navegação entre páginas da aplicação.
-- **Material-UI**: Framework UI para React que fornece componentes de interface pré-construídos e customizáveis.
-- **Axios**: Cliente HTTP baseado em Promises para fazer requisições à API do ViaCEP e obter dados de endereços.
-- **JSON Server**: Utilizado para simular uma API RESTful com operações CRUD, facilitando o desenvolvimento e testes locais.
+- Cadastro, edição, listagem e remoção de usuários.
+- Cadastro, edição, listagem e remoção de locais para exercícios.
+- Cadastro e consulta de exercícios.
+- Consulta de endereço por CEP usando a API ViaCEP.
+- Validação de formulários com React Hook Form.
+- Navegação com React Router.
+- Regra que impede remover usuários vinculados a locais.
 
-### Como Executar
+## Tecnologias
 
-#### Pré-requisitos
-Antes de iniciar, é necessário ter o Node.js e o npm (ou yarn) instalados em sua máquina.
+- React 18
+- Vite
+- React Router
+- React Hook Form
+- Fetch API
+- JSON Server
+- ViaCEP
+- ESLint
 
-#### Instalação
-1. Clone o repositório do projeto:
-   ```bash
-   git clone https://github.com/seu-usuario/exercita365.git
-   cd exercita365
-   npm install
-   json-server --watch db.json 
-   npm start
-   Acesse http://localhost:3000 em seu navegador para usar a aplicação.
+## Como executar
 
-#### Melhorias Futuras
-1 - Autenticação de Usuários: Implementar autenticação completa para segurança dos dados dos usuários.
-2 - Integração com APIs de Clima: Oferecer informações sobre o clima nos locais de exercícios para melhor      planejamento das atividades.
-3 - Funcionalidades de Socialização: Adicionar recursos que permitam aos usuários formarem grupos e marcarem encontros nos locais de exercícios.
+### Pré-requisitos
 
+- Node.js 18 ou superior
+- npm
 
-#### Conclusão
-GoFitness360 é uma ferramenta essencial para quem busca manter um estilo de vida ativo com facilidade e conveniência. Através de sua interface amigável e recursos robustos, a plataforma serve a uma comunidade crescente de entusiastas de fitness que valorizam a acessibilidade e a informação.
+### Instalação
+
+```bash
+git clone https://github.com/Luizhprovin/GoFitness360.git
+cd GoFitness360
+npm install
+```
+
+Abra dois terminais na pasta do projeto.
+
+Terminal 1 — API local:
+
+```bash
+npm run json-server
+```
+
+A API será disponibilizada em `http://localhost:3000`.
+
+Terminal 2 — aplicação:
+
+```bash
+npm run dev
+```
+
+Abra no navegador o endereço exibido pelo Vite, normalmente `http://localhost:5173`.
+
+## Scripts disponíveis
+
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Inicia o ambiente de desenvolvimento |
+| `npm run json-server` | Inicia a API simulada |
+| `npm run build` | Gera a versão de produção |
+| `npm run preview` | Visualiza o build localmente |
+| `npm run lint` | Executa as verificações do ESLint |
+
+## Estrutura
+
+```text
+GoFitness360/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── context/             # estado e acesso à API
+│   ├── pages/               # telas da aplicação
+│   ├── App.jsx
+│   └── main.jsx
+├── db.json                  # dados da API simulada
+├── package.json
+└── vite.config.js
+```
+
+## Decisões de implementação
+
+- O JSON Server permite demonstrar o fluxo CRUD sem depender de um backend externo.
+- O contexto centraliza usuários, locais e exercícios para as páginas da aplicação.
+- O ViaCEP preenche parte do endereço a partir de um CEP válido.
+- A remoção de usuário verifica previamente se existem locais vinculados.
+
+## Limitações de segurança
+
+A autenticação atual consulta registros no JSON Server e mantém senhas em texto simples. Ela existe apenas para demonstração acadêmica. Uma versão real deve utilizar backend próprio, hash de senha, autenticação por sessão ou token, autorização e validação no servidor.
+
+## Próximos passos
+
+- Substituir o JSON Server por uma API com banco de dados.
+- Implementar autenticação e autorização reais.
+- Remover URLs locais do código e configurá-las por variável de ambiente.
+- Adicionar testes de componentes e fluxos CRUD.
+- Melhorar acessibilidade e feedback de erros.
+- Publicar uma demonstração navegável.
+
+---
+
+Desenvolvido por [Luiz Henrique Provin](https://github.com/Luizhprovin).
