@@ -1,80 +1,59 @@
 {
   "usuarios": [
     {
-      "nome": "luiz henrique",
-      "email": "luiz@hotmail.com",
-      "senha": "123456",
-      "id": "1"
+      "id": "usr-001",
+      "nome": "Usuário Demonstração",
+      "email": "demo@gofitness.local",
+      "senha": "demo123",
+      "cep": "01001000",
+      "logradouro": "Praça da Sé",
+      "bairro": "Sé",
+      "cidade": "São Paulo",
+      "estado": "SP"
     },
     {
-      "id": "dcd2",
-      "nome": "sadasdasdas",
-      "email": "dasdasdsada",
-      "senha": "2321312312"
-    },
-    {
-      "id": "5c6f",
-      "nome": "luiz",
-      "email": "luiz@gmail.com",
-      "senha": "1234",
-      "cep": "88020303",
-      "logradouro": "Avenida Mauro Ramos",
+      "id": "usr-002",
+      "nome": "Atleta Exemplo",
+      "email": "atleta@gofitness.local",
+      "senha": "demo123",
+      "cep": "20040002",
+      "logradouro": "Rua da Assembleia",
       "bairro": "Centro",
-      "cidade": "Florianópolis",
-      "estado": "SC"
-    },
-    {
-      "id": "df79",
-      "nome": "antonio",
-      "email": "eu@email.com",
-      "senha": "1234",
-      "cep": "88030361",
-      "logradouro": "Servidão Natalicia Pereira",
-      "bairro": "João Paulo",
-      "cidade": "Florianópolis",
-      "estado": "SC"
-    },
-    {
-      "id": "315b",
-      "nome": "luiz",
-      "email": "luiz@luiz",
-      "senha": "1234",
-      "cep": "88020303",
-      "logradouro": "Avenida Mauro Ramos",
-      "bairro": "Centro",
-      "cidade": "Florianópolis",
-      "estado": "SC"
-    },
-    {
-      "nome": "juv",
-      "email": "juv@juv",
-      "senha": "1234",
-      "cep": "88020303",
-      "logradouro": "Avenida Mauro Ramos",
-      "bairro": "Centro",
-      "cidade": "Florianópolis",
-      "estado": "SC",
-      "id": "N_YEF74"
-    },
-    {
-      "nome": "Luiz",
-      "email": "Luiz@fitness.com",
-      "senha": "1234",
-      "cep": "88020303",
-      "logradouro": "Avenida Mauro Ramos",
-      "bairro": "Centro",
-      "cidade": "Florianópolis",
-      "estado": "SC",
-      "id": "yx1dgfY"
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ"
     }
   ],
   "locais": [
     {
-      "nome": "academia do bairro 4",
-      "descricao": "cadasdasdas",
-      "coordenadas": "dsdas",
-      "tipoDePratica": "eq3eq",
-      "id": "xMBoLXc"
+      "nome": "Parque Movimento",
+      "descricao": "Espaço público de demonstração com pista e equipamentos funcionais.",
+      "coordenadas": "-23.5505,-46.6333",
+      "tipoDePratica": "Corrida e treino funcional",
+      "id": "loc-001"
+    },
+    {
+      "id": "loc-002",
+      "nome": "Centro Esportivo Exemplo",
+      "descricao": "Local fictício para atividades coletivas e musculação.",
+      "cep": "20040002",
+      "endereco": "Rua da Assembleia, Centro, Rio de Janeiro, RJ",
+      "coordenadas": "-22.9068,-43.1729",
+      "tipoDePratica": "Musculação e esportes coletivos"
     }
-  ]
+  ],
+  "exercicios": [
+    {
+      "id": "ex-001",
+      "nome": "Agachamento livre",
+      "descricao": "Movimento funcional para membros inferiores.",
+      "tipo": "Força"
+    },
+    {
+      "id": "ex-002",
+      "nome": "Caminhada moderada",
+      "descricao": "Atividade aeróbica de intensidade moderada.",
+      "tipo": "Cardiorrespiratório"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

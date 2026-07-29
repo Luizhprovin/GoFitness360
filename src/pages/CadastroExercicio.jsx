@@ -1,22 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useLocation } from 'wouter';
 import { UsuariosContext } from '../context/UsuariosContext';
-import { useNavigate, useParams } from 'react-router-dom';
 
-function CadastroExercicio() {
+function CadastroExercicio({ id }) {
   const { cadastrarExercicio, exercicios, editarExercicio } = useContext(UsuariosContext);
-  const [exercicio, setExercicio] = useState({ nome: '', descricao: '', tipo: '' });
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const isEdit = id ? true : false;
-
-  useEffect(() => {
-    if (isEdit) {
-      const exercicioEncontrado = exercicios.find(ex => ex.id === id);
-      if (exercicioEncontrado) {
-        setExercicio(exercicioEncontrado);
-      }
-    }
-  }, [id, exercicios, isEdit]);
+  const [rascunho, setRascunho] = useState(null);
+  const [, navigate] = useLocation();
+  const isEdit = Boolean(id);
+  const exercicioEncontrado = isEdit
+    ? exercicios.find((item) => String(item.id) === id)
+    : null;
+  const exercicio = rascunho ?? exercicioEncontrado ?? {
+    nome: '',
+    descricao: '',
+    tipo: '',
+  };
 
   const handleSave = async () => {
     if (isEdit) {
@@ -33,23 +32,27 @@ function CadastroExercicio() {
       <input
         type="text"
         value={exercicio.nome}
-        onChange={(e) => setExercicio({ ...exercicio, nome: e.target.value })}
+        onChange={(e) => setRascunho({ ...exercicio, nome: e.target.value })}
         placeholder="Nome do Exercício"
       />
       <textarea
         value={exercicio.descricao}
-        onChange={(e) => setExercicio({ ...exercicio, descricao: e.target.value })}
+        onChange={(e) => setRascunho({ ...exercicio, descricao: e.target.value })}
         placeholder="Descrição"
       />
       <input
         type="text"
         value={exercicio.tipo}
-        onChange={(e) => setExercicio({ ...exercicio, tipo: e.target.value })}
+        onChange={(e) => setRascunho({ ...exercicio, tipo: e.target.value })}
         placeholder="Tipo"
       />
       <button onClick={handleSave}>{isEdit ? 'Salvar Alterações' : 'Cadastrar'}</button>
     </div>
   );
 }
+
+CadastroExercicio.propTypes = {
+  id: PropTypes.string,
+};
 
 export default CadastroExercicio;

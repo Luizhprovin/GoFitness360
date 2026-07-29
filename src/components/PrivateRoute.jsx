@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
+import { Redirect } from 'wouter';
 
 function PrivateRoute({ children }) {
   const isAutenticado =
     JSON.parse(localStorage.getItem('isAutenticado')) || false;
 
-  return isAutenticado ? children : <Navigate to="/login" replace />;
+  return isAutenticado ? children : <Redirect to="/login" replace />;
 }
 
 PrivateRoute.propTypes = {

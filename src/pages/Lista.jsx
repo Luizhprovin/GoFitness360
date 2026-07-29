@@ -1,8 +1,11 @@
-import {useParams} from "react-router-dom"
+import PropTypes from 'prop-types';
 
-function Lista() {
-  const {id} = useParams()
-  return ( <h1> Lista {id}</h1> );
+function Lista({ id }) {
+  return <h1>Lista {id}</h1>;
 }
+
+Lista.propTypes = {
+  id: PropTypes.string.isRequired,
+};
 
 export default Lista;

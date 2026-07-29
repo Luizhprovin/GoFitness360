@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { UsuariosContext } from '../context/UsuariosContext';
 import './CadastroUsuarios.css'; 
 
 function CadastroUsuarios() {
     const { cadastrarUsuario } = useContext(UsuariosContext);
-    const navigate = useNavigate();
+    const [, navigate] = useLocation();
     const [novoUsuario, setNovoUsuario] = useState({
         nome: "",
         email: "",
