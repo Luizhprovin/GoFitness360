@@ -3,12 +3,12 @@
 [![CI](https://github.com/Luizhprovin/GoFitness360/actions/workflows/ci.yml/badge.svg)](https://github.com/Luizhprovin/GoFitness360/actions/workflows/ci.yml)
 
 <p>
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-ES2024-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000">
-  <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=000000">
-  <img alt="Vite" src="https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF">
-  <img alt="Wouter" src="https://img.shields.io/badge/Wouter-3-5B3DF5?style=for-the-badge">
-  <img alt="JSON Server" src="https://img.shields.io/badge/JSON_Server-1-000000?style=for-the-badge&logo=json&logoColor=FFFFFF">
-  <img alt="ESLint" src="https://img.shields.io/badge/ESLint-10-4B32C3?style=for-the-badge&logo=eslint&logoColor=FFFFFF">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000">
+  <img alt="React" src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=000000">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFFFFF">
+  <img alt="Wouter" src="https://img.shields.io/badge/Wouter-5B3DF5?style=for-the-badge">
+  <img alt="JSON Server" src="https://img.shields.io/badge/JSON_Server-000000?style=for-the-badge&logo=json&logoColor=FFFFFF">
+  <img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=FFFFFF">
 </p>
 
 Aplicação React para cadastrar usuários, locais de atividade física e exercícios. O projeto demonstra navegação entre páginas, formulários, consumo da API ViaCEP e operações CRUD apoiadas por uma API simulada com JSON Server.
