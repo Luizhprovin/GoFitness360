@@ -14,17 +14,11 @@ function EditarLocal({ id }) {
         coordenadas: local?.coordenadas ?? '',
         tipoDePratica: local?.tipoDePratica ?? '',
     };
-    const formularioVazio = {
-        nome: '',
-        descricao: '',
-        coordenadas: '',
-        tipoDePratica: '',
-    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setRascunho({
-            ...(local ? formData : formularioVazio),
+            ...formData,
             [name]: value
         });
     };
