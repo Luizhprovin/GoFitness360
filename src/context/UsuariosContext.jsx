@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 export const UsuariosContext = createContext();
 
@@ -201,6 +202,25 @@ export const UsuariosContextProvider = ({ children }) => {
     }
 };
 
+    const editarExercicio = async (id, exercicio) => {
+    try {
+        const response = await fetch(`http://localhost:3000/exercicios/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(exercicio)
+        });
+        if (response.ok) {
+            fetchExercicios();
+        } else {
+            throw new Error('Falha ao editar exercício');
+        }
+    } catch (error) {
+        console.error('Erro ao editar exercício:', error);
+    }
+};
+
     useEffect(() => {
         fetchUsuarios();
         fetchLocais();
@@ -211,8 +231,10 @@ export const UsuariosContextProvider = ({ children }) => {
         <UsuariosContext.Provider value={{
             usuarios,
             locais,
+            exercicios,
             fetchExercicios,
             cadastrarExercicio,
+            editarExercicio,
             fetchLocais,
             fetchUsuarios,
             login,
@@ -229,3 +251,6 @@ export const UsuariosContextProvider = ({ children }) => {
     );
 };
 
+UsuariosContextProvider.propTypes = {
+    children: PropTypes.node.isRequired
+};
