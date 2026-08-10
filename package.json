@@ -19,7 +19,7 @@
     "prop-types": "^15.8.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-hook-form": "^7.83.0",
+    "react-hook-form": "^7.84.0",
     "wouter": "^3.10.0"
   },
   "devDependencies": {
